@@ -1,0 +1,14 @@
+# Django framework
+django>=4.2,<5.0
+
+# Django REST Framework
+djangorestframework>=3.14.0
+
+# PostgreSQL adapter
+psycopg2-binary>=2.9.7
+
+# Redis cache backend for Django
+django-redis>=5.4.0
+
+# API documentation (Swagger / OpenAPI)
+drf-yasg>=1.21.7
