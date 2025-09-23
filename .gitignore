@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+
+
+# Virtual environment
+venv/
+
+
+# Docker
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
