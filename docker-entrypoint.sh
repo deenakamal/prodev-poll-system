@@ -6,7 +6,7 @@ python manage.py makemigrations
 python manage.py migrate
 
 # Load fixtures if no Poll exists
-count=$(python manage.py shell -c "from polls.models import Poll; import sys; sys.stdout.write(str(Poll.objects.count()))")
+count=$(python manage.py shell --quiet -c "from polls.models import Poll; print(Poll.objects.count())")
 if [ "$count" -eq 0 ]; then
     python manage.py loaddata initial_data.json
 fi
