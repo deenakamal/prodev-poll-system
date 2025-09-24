@@ -20,9 +20,7 @@ class VoteSerializer(serializers.ModelSerializer):
         read_only_fields = ['user']
         
 
-# -----------------------------------
-# Option serializer محسوبة runtime
-# -----------------------------------
+
 class OptionUserSerializer(serializers.ModelSerializer):
     user_voted = serializers.SerializerMethodField()
     percentage = serializers.SerializerMethodField()
@@ -41,9 +39,7 @@ class OptionUserSerializer(serializers.ModelSerializer):
             return 0
         return round((obj.votes_count / total_votes) * 100, 2)
 
-# -----------------------------------
-# Poll serializer مع الحقول الجديدة
-# -----------------------------------
+
 class PollUserVoteSerializer(serializers.ModelSerializer):
     options = OptionUserSerializer(many=True, read_only=True)
 
