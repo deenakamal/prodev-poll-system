@@ -1,0 +1,235 @@
+[
+  {
+    "model": "polls.poll",
+    "pk": 1,
+    "fields": {
+      "question": "What's your favorite programming language?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 1, "fields": {"poll": 1, "text": "Python"}},
+  {"model": "polls.option", "pk": 2, "fields": {"poll": 1, "text": "JavaScript"}},
+  {"model": "polls.option", "pk": 3, "fields": {"poll": 1, "text": "Go"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 2,
+    "fields": {
+      "question": "Which framework do you prefer for web development?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 4, "fields": {"poll": 2, "text": "Django"}},
+  {"model": "polls.option", "pk": 5, "fields": {"poll": 2, "text": "Flask"}},
+  {"model": "polls.option", "pk": 6, "fields": {"poll": 2, "text": "FastAPI"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 3,
+    "fields": {
+      "question": "What's your preferred work setup?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 7, "fields": {"poll": 3, "text": "Remote"}},
+  {"model": "polls.option", "pk": 8, "fields": {"poll": 3, "text": "Hybrid"}},
+  {"model": "polls.option", "pk": 9, "fields": {"poll": 3, "text": "On-site"}},
+  {
+    "model": "polls.poll",
+    "pk": 4,
+    "fields": {
+      "question": "Which database do you prefer for web projects?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 10, "fields": {"poll": 4, "text": "PostgreSQL"}},
+  {"model": "polls.option", "pk": 11, "fields": {"poll": 4, "text": "MySQL"}},
+  {"model": "polls.option", "pk": 12, "fields": {"poll": 4, "text": "SQLite"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 5,
+    "fields": {
+      "question": "What's your preferred front-end framework?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 13, "fields": {"poll": 5, "text": "React"}},
+  {"model": "polls.option", "pk": 14, "fields": {"poll": 5, "text": "Vue"}},
+  {"model": "polls.option", "pk": 15, "fields": {"poll": 5, "text": "Angular"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 6,
+    "fields": {
+      "question": "Which operating system do you mainly use?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 16, "fields": {"poll": 6, "text": "Windows"}},
+  {"model": "polls.option", "pk": 17, "fields": {"poll": 6, "text": "macOS"}},
+  {"model": "polls.option", "pk": 18, "fields": {"poll": 6, "text": "Linux"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 7,
+    "fields": {
+      "question": "How do you prefer to learn new technologies?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 19, "fields": {"poll": 7, "text": "Online tutorials"}},
+  {"model": "polls.option", "pk": 20, "fields": {"poll": 7, "text": "Books"}},
+  {"model": "polls.option", "pk": 21, "fields": {"poll": 7, "text": "Hands-on practice"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 8,
+    "fields": {
+      "question": "What's your favorite cloud platform?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 22, "fields": {"poll": 8, "text": "AWS"}},
+  {"model": "polls.option", "pk": 23, "fields": {"poll": 8, "text": "Azure"}},
+  {"model": "polls.option", "pk": 24, "fields": {"poll": 8, "text": "Google Cloud"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 9,
+    "fields": {
+      "question": "Which version control system do you mainly use?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 25, "fields": {"poll": 9, "text": "Git"}},
+  {"model": "polls.option", "pk": 26, "fields": {"poll": 9, "text": "Mercurial"}},
+  {"model": "polls.option", "pk": 27, "fields": {"poll": 9, "text": "SVN"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 10,
+    "fields": {
+      "question": "Which back-end language do you prefer?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 28, "fields": {"poll": 10, "text": "Python"}},
+  {"model": "polls.option", "pk": 29, "fields": {"poll": 10, "text": "JavaScript (Node.js)"}},
+  {"model": "polls.option", "pk": 30, "fields": {"poll": 10, "text": "Java"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 11,
+    "fields": {
+      "question": "Which CSS framework do you mostly use?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 31, "fields": {"poll": 11, "text": "Bootstrap"}},
+  {"model": "polls.option", "pk": 32, "fields": {"poll": 11, "text": "Tailwind CSS"}},
+  {"model": "polls.option", "pk": 33, "fields": {"poll": 11, "text": "Bulma"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 12,
+    "fields": {
+      "question": "Which JavaScript runtime environment do you prefer?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 34, "fields": {"poll": 12, "text": "Node.js"}},
+  {"model": "polls.option", "pk": 35, "fields": {"poll": 12, "text": "Deno"}},
+  {"model": "polls.option", "pk": 36, "fields": {"poll": 12, "text": "Bun"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 13,
+    "fields": {
+      "question": "Which API style do you prefer for web applications?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 37, "fields": {"poll": 13, "text": "REST"}},
+  {"model": "polls.option", "pk": 38, "fields": {"poll": 13, "text": "GraphQL"}},
+  {"model": "polls.option", "pk": 39, "fields": {"poll": 13, "text": "gRPC"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 14,
+    "fields": {
+      "question": "Which code editor or IDE do you mainly use?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 40, "fields": {"poll": 14, "text": "VS Code"}},
+  {"model": "polls.option", "pk": 41, "fields": {"poll": 14, "text": "PyCharm"}},
+  {"model": "polls.option", "pk": 42, "fields": {"poll": 14, "text": "IntelliJ IDEA"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 15,
+    "fields": {
+      "question": "Which deployment method do you prefer?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 43, "fields": {"poll": 15, "text": "Docker"}},
+  {"model": "polls.option", "pk": 44, "fields": {"poll": 15, "text": "Kubernetes"}},
+  {"model": "polls.option", "pk": 45, "fields": {"poll": 15, "text": "Traditional server hosting"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 16,
+    "fields": {
+      "question": "Which testing approach do you usually follow?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 46, "fields": {"poll": 16, "text": "Unit testing"}},
+  {"model": "polls.option", "pk": 47, "fields": {"poll": 16, "text": "Integration testing"}},
+  {"model": "polls.option", "pk": 48, "fields": {"poll": 16, "text": "End-to-end testing"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 17,
+    "fields": {
+      "question": "Which package manager do you mainly use?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 49, "fields": {"poll": 17, "text": "npm"}},
+  {"model": "polls.option", "pk": 50, "fields": {"poll": 17, "text": "yarn"}},
+  {"model": "polls.option", "pk": 51, "fields": {"poll": 17, "text": "pnpm"}},
+
+  {
+    "model": "polls.poll",
+    "pk": 18,
+    "fields": {
+      "question": "Which JavaScript framework for mobile apps do you prefer?",
+      "created_at": "2025-09-24T00:00:00Z",
+      "expires_at": null
+    }
+  },
+  {"model": "polls.option", "pk": 52, "fields": {"poll": 18, "text": "React Native"}},
+  {"model": "polls.option", "pk": 53, "fields": {"poll": 18, "text": "Flutter"}},
+  {"model": "polls.option", "pk": 54, "fields": {"poll": 18, "text": "Ionic"}}
+
+]
