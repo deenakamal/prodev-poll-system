@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Poll, Vote
-from .serializers import PollSerializer, VoteSerializer
+from .serializers import PollSerializer, VoteSerializer, PollUserVoteSerializer
 from .pagination import PollPagination
 from .utils import get_poll_results
 
@@ -32,3 +32,12 @@ class VoteCreateView(generics.CreateAPIView):
         
         from .utils import get_poll_results
         get_poll_results(vote.poll.id)
+        
+        
+class UserVotedPollsListView(generics.ListAPIView):
+    serializer_class = PollUserVoteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # يرجع Polls اللي المستخدم صوت فيها فقط
+        return Poll.objects.filter(votes__user=self.request.user, is_deleted=False).distinct()
