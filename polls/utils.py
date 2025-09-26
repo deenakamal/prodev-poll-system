@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from .models import Poll
 
+
 def get_poll_results(poll_id):
     """
     Retrieve poll results with count and percentage for each option.

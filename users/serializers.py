@@ -3,7 +3,9 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class RegisterSerializer(serializers.ModelSerializer):
+    """Serializer for registering a new user."""
     password = serializers.CharField(write_only=True, required=True)
 
     class Meta:
@@ -18,7 +20,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
 
+
 class UserSerializer(serializers.ModelSerializer):
+    """Serializer for user details (read-only for id and username)."""
+
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name']
