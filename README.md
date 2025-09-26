@@ -61,11 +61,13 @@ A .env file is already included with the repository and contains the configurati
 
 If you want to use your own environment variables, you can create your own .env file:
 
+``` bash 
 cp .env.example .env
+```
 
 
 Then update the values as needed:
-
+``` env
 POSTGRES_DB=your_db_name
 POSTGRES_USER=your_db_user
 POSTGRES_PASSWORD=your_db_password
@@ -74,7 +76,7 @@ POSTGRES_PORT=5432
 SECRET_KEY=your_django_secret_key
 DEBUG=True
 
-
+```
 Otherwise, the included .env file will be used automatically by Docker Compose.
 
 3. Run with Docker Compose
