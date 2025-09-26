@@ -1,10 +1,17 @@
 from rest_framework import serializers
 from .models import Poll, Option, Vote
 
+
 class OptionSerializer(serializers.ModelSerializer):
+    votes_count = serializers.SerializerMethodField()  # compute dynamically
+
     class Meta:
         model = Option
         fields = ['id', 'text', 'votes_count']
+
+    def get_votes_count(self, obj):
+        return obj.votes.count()  # counts votes from the Vote table
+
 
 class PollSerializer(serializers.ModelSerializer):
     options = OptionSerializer(many=True, read_only=True)
