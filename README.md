@@ -1,34 +1,35 @@
 ## ProDev Poll System
 
-A backend-only polling system built with Django REST Framework. This project allows creating and managing polls, options, and votes, with JWT authentication for users and interactive API documentation using Swagger.
+A backend-only polling system built with Django REST Framework.
+This project allows creating and managing polls, options, and votes, with JWT authentication for users and interactive API documentation using Swagger.
 
 The project uses PostgreSQL for data persistence.
 
 ## Features
 
-User Authentication
+* User Authentication
 
-Register new users
+* Register new users
 
-JWT-based login (access & refresh tokens)
+* JWT-based login (access & refresh tokens)
 
-View and update profile
+* View and update profile
 
-Poll Management
+* Poll Management
 
-Create, update, soft-delete polls
+* Create, update, soft-delete polls
 
-Add multiple options per poll
+* Add multiple options per poll
 
-Filter and search polls
+* Filter and search polls
 
-Voting System
+* Voting System
 
-Users can cast votes (one vote per poll)
+* Users can cast votes (one vote per poll)
 
-View results with counts and percentages
+* View results with counts and percentages
 
-Cache-enabled for faster result retrieval
+* Cache-enabled for faster result retrieval
 
 ## API Documentation
 
@@ -38,17 +39,17 @@ ReDoc (/redoc/) as alternative documentation
 
 ## Technologies Used
 
-Backend: Python 3.x, Django, Django REST Framework
+- Backend: Python 3.x, Django, Django REST Framework
 
-Authentication: Simple JWT
+- Authentication: Simple JWT
 
-Database: PostgreSQL
+- Database: PostgreSQL
 
-API Documentation: drf-yasg (Swagger & ReDoc)
+- API Documentation: drf-yasg (Swagger & ReDoc)
 
-Containerization: Docker & Docker Compose
+- Containerization: Docker & Docker Compose
 
-Caching: Django Cache Framework (Redis)
+- Caching: Django Cache Framework (Redis)
 
 Setup Instructions
 1. Clone the repository
@@ -90,11 +91,11 @@ docker compose up --build
 
 The Django server will be accessible at: http://localhost:8000
 
-Admin panel: http://localhost:8000/admin/
+- Admin panel: http://localhost:8000/admin/
 
-Swagger UI: http://localhost:8000/swagger/
+- Swagger UI: http://localhost:8000/swagger/
 
-ReDoc UI: http://localhost:8000/redoc/
+- ReDoc UI: http://localhost:8000/redoc/
 
 Note: A superuser can be created inside the running container if you need admin access:
 ``` bash
@@ -125,15 +126,15 @@ docker compose exec web python manage.py createsuperuser
 
 ## Contributing
 
-Fork the repository
+- Fork the repository
 
-Create a branch: git checkout -b feature-branch
+- Create a branch: git checkout -b feature-branch
 
-Commit changes: git commit -am 'Add new feature'
+- Commit changes: git commit -am 'Add new feature'
 
-Push branch: git push origin feature-branch
+- Push branch: git push origin feature-branch
 
-Open a pull request
+- Open a pull request
 
 ## License
 
