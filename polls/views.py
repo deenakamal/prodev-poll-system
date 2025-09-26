@@ -1,9 +1,12 @@
-from rest_framework import generics, permissions, filters
+from rest_framework import generics, permissions, filters, status
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Poll, Vote
 from .serializers import PollSerializer, VoteSerializer, PollUserVoteSerializer
 from .pagination import PollPagination
 from .utils import get_poll_results
+from rest_framework.response import Response
+from .utils import invalidate_poll_cache
+
 
 class PollListView(generics.ListAPIView):
     queryset = Poll.objects.filter(is_deleted=False)
@@ -17,21 +20,30 @@ class PollListView(generics.ListAPIView):
     pagination_class = PollPagination
 
 
+
 class VoteCreateView(generics.CreateAPIView):
     serializer_class = VoteSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        poll_id = request.data.get("poll")
+        user = request.user
+
+        if Vote.objects.filter(poll_id=poll_id, user=user).exists():
+            return Response(
+                {"detail": "You have already voted in this poll."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        return super().create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         vote = serializer.save(user=self.request.user)
 
-        
         option = vote.option
         option.votes_count = option.votes.count()
         option.save()
 
-        
-        from .utils import get_poll_results
-        get_poll_results(vote.poll.id)
+        invalidate_poll_cache(vote.poll.id)
         
         
 class UserVotedPollsListView(generics.ListAPIView):
@@ -39,5 +51,24 @@ class UserVotedPollsListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        # يرجع Polls اللي المستخدم صوت فيها فقط
-        return Poll.objects.filter(votes__user=self.request.user, is_deleted=False).distinct()
+        polls = Poll.objects.filter(votes__user=self.request.user, is_deleted=False).distinct()
+        for poll in polls:
+            for option in poll.options.all():
+                option.votes_count = option.votes.count()
+        return polls
+
+
+class PollResultsView(generics.RetrieveAPIView):
+    queryset = Poll.objects.filter(is_deleted=False)
+    serializer_class = PollUserVoteSerializer
+    permission_classes = [permissions.AllowAny]  # or IsAuthenticated if you want to restrict
+
+    def retrieve(self, request, *args, **kwargs):
+        poll = self.get_object()
+        results = get_poll_results(poll.id)  # from cache or db
+        data = {
+            "poll": poll.question,
+            "expires_at": poll.expires_at,
+            "results": results
+        }
+        return Response(data)
