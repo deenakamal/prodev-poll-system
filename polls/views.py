@@ -23,6 +23,7 @@ class PollListView(generics.ListAPIView):
 class VoteCreateView(generics.CreateAPIView):
     """Create a vote ensuring user votes only once per poll."""
     serializer_class = VoteSerializer
+    permission_classes = [permissions.IsAuthenticated]  # لازم يكون مستخدم مسجل دخول
 
     def create(self, request, *args, **kwargs):
         poll_id = request.data.get("poll")
@@ -35,7 +36,6 @@ class VoteCreateView(generics.CreateAPIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
         # Validate option belongs to poll
-        from .models import Poll
         try:
             poll = Poll.objects.get(id=poll_id)
         except Poll.DoesNotExist:
@@ -44,26 +44,40 @@ class VoteCreateView(generics.CreateAPIView):
         if not poll.options.filter(id=option_id).exists():
             return Response({"detail": "Invalid option for this poll."}, status=status.HTTP_400_BAD_REQUEST)
 
-        return super().create(request, *args, **kwargs)
+        # Pass user to serializer
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=user)  # <- هنا بنضيف user
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class UserVotedPollsListView(generics.ListAPIView):
-    """List polls that the current user has voted on."""
+    """
+    List polls that the current user has voted on.
+    Shows vote counts and percentages using cached results.
+    """
     serializer_class = PollUserVoteSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
+        # Get all polls the current user has voted on
         polls = Poll.objects.filter(votes__user=self.request.user, is_deleted=False).distinct()
 
-        # Update vote counts and percentages for each option
         for poll in polls:
-            total_votes = sum(option.votes.count() for option in poll.options.all()) or 1
+            # Use the utility function to get vote counts + percentages
+            results = get_poll_results(poll.id)
+
             for option in poll.options.all():
-                option.votes_count = option.votes.count()
-                option.percentage = round((option.votes_count / total_votes) * 100, 2)
+                option.votes_count = results.get(option.text, {}).get("count", 0)
+                option.percentage = results.get(option.text, {}).get("percentage", 0)
+                # Mark if current user voted on this option
                 option.user_voted = option.votes.filter(user=self.request.user).exists()
 
         return polls
+
+
+
 
 
 class PollResultsView(generics.RetrieveAPIView):
