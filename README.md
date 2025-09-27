@@ -102,6 +102,18 @@ Note: A superuser can be created inside the running container if you need admin 
 docker compose exec web python manage.py createsuperuser
 ```
 
+## 🛠 Admin Interface
+
+The Django admin allows managing polls, options, votes, and users.
+
+- **URL:** /admin/
+- **Models Registered:**
+  - **Poll:** question, created_by, is_deleted, created_at, updated_at
+  - **Option:** poll, text
+  - **Vote:** poll, option, user, created_at
+  - **User:** id, username, email, is_staff, is_active, date_joined
+
+
 ## API Endpoints
 
 ### Users & Auth
@@ -123,6 +135,11 @@ docker compose exec web python manage.py createsuperuser
 | `/api/polls/vote/`                  | POST        | Cast a vote (one vote per user per poll)       |
 | `/api/polls/my-votes/`              | GET         | List polls the user has voted in               |
 | `/api/polls/results/<poll_id>/`     | GET         | View poll results with vote counts & %        |
+
+## ⚡ Caching
+
+- Poll results are cached using Redis for 60 seconds to improve performance.
+- Cache is automatically invalidated when a new vote is cast.
 
 ## Contributing
 
